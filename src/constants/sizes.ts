@@ -1,0 +1,16 @@
+export const SIZES = {
+  2: '0.125rem',
+  4: '0.25rem',
+  8: '0.5rem',
+  10: '0.625rem',
+  12: '0.75rem',
+  14: '0.875rem',
+  16: '1rem',
+  18: '1.125rem',
+  20: '1.25rem',
+  24: '1.5rem',
+  32: '2rem',
+  48: '3rem',
+  'max-width': '1120px',
+  'border-radius': '6px',
+}
