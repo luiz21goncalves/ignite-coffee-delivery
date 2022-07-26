@@ -10,7 +10,11 @@ export const SIZES = {
   20: '1.25rem',
   24: '1.5rem',
   32: '2rem',
+  40: '2.5rem',
   48: '3rem',
+  56: '3.5rem',
+  66: '4.125rem',
+  92: '5.75rem',
   'max-width': '1120px',
   'border-radius': '6px',
 }
