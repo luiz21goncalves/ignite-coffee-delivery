@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { FONT_WEIGHTS } from '../../constants/fonts'
-import { SIZES } from '../../constants/sizes'
+import { BORDER_RADIUS, SIZES } from '../../constants/sizes'
 
 export const HeaderContainer = styled.header`
   max-width: ${SIZES['max-width']};
@@ -24,7 +24,7 @@ const LabelBase = styled.a`
   align-items: center;
   justify-content: center;
   padding: ${SIZES[8]};
-  border-radius: ${SIZES['border-radius']};
+  border-radius: ${BORDER_RADIUS[6]};
 `
 
 export const CityLabel = styled(LabelBase)`

@@ -16,5 +16,9 @@ export const SIZES = {
   66: '4.125rem',
   92: '5.75rem',
   'max-width': '1120px',
-  'border-radius': '6px',
+}
+
+export const BORDER_RADIUS = {
+  6: '6px',
+  36: '36px',
 }
