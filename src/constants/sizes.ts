@@ -14,6 +14,7 @@ export const SIZES = {
   48: '3rem',
   56: '3.5rem',
   66: '4.125rem',
+  72: '4.5rem',
   92: '5.75rem',
   'max-width': '1120px',
 }
@@ -21,4 +22,5 @@ export const SIZES = {
 export const BORDER_RADIUS = {
   6: '6px',
   36: '36px',
+  pill: '9999px',
 }
