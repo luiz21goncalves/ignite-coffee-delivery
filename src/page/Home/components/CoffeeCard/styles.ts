@@ -11,7 +11,6 @@ export const CoffeeCardContainer = styled.div`
   border-bottom-left-radius: ${BORDER_RADIUS[36]};
   border-bottom-right-radius: ${BORDER_RADIUS[6]};
   max-width: 256px;
-  margin: 50px auto;
 `
 
 export const CoffeeCardHeader = styled.header`
@@ -21,6 +20,11 @@ export const CoffeeCardHeader = styled.header`
   justify-content: space-between;
   gap: ${SIZES[12]};
   margin-top: -${SIZES[40]};
+
+  > div {
+    display: flex;
+    gap: ${SIZES[4]};
+  }
 `
 
 export const CoffeeCardTag = styled.span`
@@ -41,7 +45,7 @@ export const CoffeeCardBody = styled.div`
   strong {
     display: inline-block;
     font-family: ${FONT_FAMILY.header};
-    font-weight: ${FONT_WEIGHTS['extra-bold']};
+    font-weight: ${FONT_WEIGHTS.bold};
     font-size: ${SIZES[20]};
     color: ${({ theme }) => theme['gray-800']};
     margin-bottom: ${SIZES[8]};

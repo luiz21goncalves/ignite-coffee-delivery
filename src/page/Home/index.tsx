@@ -1,4 +1,5 @@
 import { Header } from '../../components/Header'
+import { COFFEE } from '../../constants/coffee'
 
 import { CoffeeCard } from './components/CoffeeCard'
 import { Intro } from './components/Intro'
@@ -13,7 +14,9 @@ export function Home() {
         <h2>Nossos cafés</h2>
 
         <section>
-          <CoffeeCard />
+          {COFFEE.map((coffee) => (
+            <CoffeeCard key={coffee.id} coffee={coffee} />
+          ))}
         </section>
       </S.HomeContent>
     </>
