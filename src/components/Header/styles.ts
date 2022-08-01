@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { FONT_WEIGHTS } from '../../constants/fonts'
@@ -26,12 +27,13 @@ export const HeaderContainer = styled.header`
   }
 `
 
-const LabelBase = styled.a`
+const LabelBase = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
   padding: ${SIZES[8]};
   border-radius: ${BORDER_RADIUS[6]};
+  text-decoration: none;
 `
 
 export const CityLabel = styled(LabelBase)`
