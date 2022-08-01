@@ -1,4 +1,3 @@
-import { Header } from '../../components/Header'
 import { COFFEE } from '../../constants/coffee'
 
 import { CoffeeCard } from './components/CoffeeCard'
@@ -8,7 +7,6 @@ import * as S from './styles'
 export function Home() {
   return (
     <>
-      <Header />
       <Intro />
       <S.HomeContent>
         <h2>Nossos cafés</h2>
