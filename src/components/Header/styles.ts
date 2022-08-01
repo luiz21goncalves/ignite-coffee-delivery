@@ -3,6 +3,13 @@ import styled from 'styled-components'
 import { FONT_WEIGHTS } from '../../constants/fonts'
 import { BORDER_RADIUS, SIZES } from '../../constants/sizes'
 
+export const HeaderWrapper = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: ${({ theme }) => theme.background};
+`
+
 export const HeaderContainer = styled.header`
   max-width: ${SIZES['max-width']};
   margin: 0 auto;
