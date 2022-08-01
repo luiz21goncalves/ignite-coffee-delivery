@@ -9,6 +9,10 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  body {
+    background-color: ${({ theme }) => theme.background};
+  }
+
   body, input, button {
     font-family: ${FONT_FAMILY.text};
     font-size: 1rem;
