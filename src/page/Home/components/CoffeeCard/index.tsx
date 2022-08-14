@@ -1,6 +1,7 @@
 import { ShoppingCart } from 'phosphor-react'
 
 import { Counter } from '../../../../components/Counter'
+import { formatMonetary } from '../../../../utils'
 
 import * as S from './styles'
 
@@ -18,10 +19,7 @@ type CoffeeCardProps = {
 export function CoffeeCard(props: CoffeeCardProps) {
   const { coffee } = props
 
-  const priceFormatted = String((coffee.price / 100).toFixed(2)).replace(
-    '.',
-    ',',
-  )
+  const priceFormatted = formatMonetary(coffee.price)
 
   return (
     <S.CoffeeCardContainer>
@@ -43,7 +41,7 @@ export function CoffeeCard(props: CoffeeCardProps) {
 
       <S.CoffeeCardFooter>
         <S.CoffeeCardPrice>
-          R$ <span>{priceFormatted}</span>
+          <span>{priceFormatted}</span>
         </S.CoffeeCardPrice>
 
         <div>
