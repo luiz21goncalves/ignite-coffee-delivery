@@ -1,7 +1,12 @@
+import { FormCheckout } from './components/FormCheckout'
+import { OrderVisualization } from './components/OrderVisualization'
+import * as S from './styles'
+
 export function Checkout() {
   return (
-    <>
-      <h1>Checkout</h1>
-    </>
+    <S.CheckoutContainer>
+      <FormCheckout />
+      <OrderVisualization />
+    </S.CheckoutContainer>
   )
 }

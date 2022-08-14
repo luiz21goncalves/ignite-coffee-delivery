@@ -33,7 +33,6 @@ export const FormCheckoutHeader = styled.div`
   > div {
     span {
       font-size: ${SIZES[14]};
-      color: ${({ theme }) => theme['gray-700']};
     }
   }
 `
