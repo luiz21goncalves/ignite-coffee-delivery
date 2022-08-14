@@ -19,7 +19,7 @@ type CoffeeCardProps = {
 export function CoffeeCard(props: CoffeeCardProps) {
   const { coffee } = props
 
-  const priceFormatted = formatMonetary(coffee.price)
+  const priceFormatted = formatMonetary(coffee.price).slice(3)
 
   return (
     <S.CoffeeCardContainer>
@@ -41,7 +41,7 @@ export function CoffeeCard(props: CoffeeCardProps) {
 
       <S.CoffeeCardFooter>
         <S.CoffeeCardPrice>
-          <span>{priceFormatted}</span>
+          R$ <span>{priceFormatted}</span>
         </S.CoffeeCardPrice>
 
         <div>

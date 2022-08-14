@@ -11,10 +11,6 @@ export const IntroLabelContainer = styled.div`
   align-items: center;
   width: fit-content;
   gap: ${SIZES[12]};
-
-  p {
-    color: ${({ theme }) => theme['gray-700']};
-  }
 `
 
 export const IconContainer = styled.div<IconContainerProps>`

@@ -72,7 +72,7 @@ export const CoffeeCardFooter = styled.footer`
 
 export const CoffeeCardPrice = styled.p`
   font-size: ${SIZES[14]};
-  color: ${({ theme }) => theme['gray-700']};
+  display: inline-block;
 
   span {
     font-weight: ${FONT_WEIGHTS['extra-bold']};
