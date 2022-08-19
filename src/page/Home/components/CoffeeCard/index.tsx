@@ -1,7 +1,6 @@
-import { Counter } from '../../../../components/Counter'
 import { CounterContextProvider } from '../../../../context/CounterContext'
 import { formatMonetary } from '../../../../utils'
-import { CardButton } from '../CardButton'
+import { CoffeeCardAction } from '../CoffeeCardAction'
 
 import * as S from './styles'
 
@@ -45,11 +44,7 @@ export function CoffeeCard(props: CoffeeCardProps) {
         </S.CoffeeCardPrice>
 
         <CounterContextProvider>
-          <div>
-            <Counter />
-
-            <CardButton coffeeId={coffee.id} />
-          </div>
+          <CoffeeCardAction coffeeId={coffee.id} />
         </CounterContextProvider>
       </S.CoffeeCardFooter>
     </S.CoffeeCardContainer>
