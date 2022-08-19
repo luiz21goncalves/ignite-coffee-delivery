@@ -11,9 +11,15 @@ type CounterProps = {
 export function Counter(props: CounterProps) {
   const { amount, onDecrease, onIncrease } = props
 
+  const isDisabledDecreaseButton = amount <= 1
+
   return (
     <S.InputContainer>
-      <S.InputButtonIcon type="button" onClick={onDecrease}>
+      <S.InputButtonIcon
+        type="button"
+        onClick={onDecrease}
+        disabled={isDisabledDecreaseButton}
+      >
         <Minus weight="bold" size={14} />
       </S.InputButtonIcon>
 

@@ -33,4 +33,9 @@ export const InputButtonIcon = styled.button`
   &:hover {
     color: ${({ theme }) => theme['purple-900']};
   }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: no-drop;
+  }
 `
