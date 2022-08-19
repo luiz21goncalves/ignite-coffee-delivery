@@ -1,7 +1,7 @@
-import { ShoppingCart } from 'phosphor-react'
-
 import { Counter } from '../../../../components/Counter'
+import { CounterContextProvider } from '../../../../context/CounterContext'
 import { formatMonetary } from '../../../../utils'
+import { CardButton } from '../CardButton'
 
 import * as S from './styles'
 
@@ -44,13 +44,13 @@ export function CoffeeCard(props: CoffeeCardProps) {
           R$ <span>{priceFormatted}</span>
         </S.CoffeeCardPrice>
 
-        <div>
-          <Counter />
+        <CounterContextProvider>
+          <div>
+            <Counter />
 
-          <S.CoffeeCardButton type="button">
-            <ShoppingCart weight="fill" size={22} />
-          </S.CoffeeCardButton>
-        </div>
+            <CardButton coffeeId={coffee.id} />
+          </div>
+        </CounterContextProvider>
       </S.CoffeeCardFooter>
     </S.CoffeeCardContainer>
   )
