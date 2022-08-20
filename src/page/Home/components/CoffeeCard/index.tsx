@@ -1,4 +1,3 @@
-import { CounterContextProvider } from '../../../../context/CounterContext'
 import { formatMonetary } from '../../../../utils'
 import { CoffeeCardAction } from '../CoffeeCardAction'
 
@@ -43,9 +42,7 @@ export function CoffeeCard(props: CoffeeCardProps) {
           R$ <span>{priceFormatted}</span>
         </S.CoffeeCardPrice>
 
-        <CounterContextProvider>
-          <CoffeeCardAction coffeeId={coffee.id} />
-        </CounterContextProvider>
+        <CoffeeCardAction coffeeId={coffee.id} />
       </S.CoffeeCardFooter>
     </S.CoffeeCardContainer>
   )
