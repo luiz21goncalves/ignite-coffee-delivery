@@ -20,7 +20,11 @@ type CartState = {
   products: Product[]
   productsAmount: number
   draftCart: DraftProduct[]
+  shippingPrice: number
+  productsPrice: number
 }
+
+const SHIPPING_PRICE_PER_PRODUCT = 350
 
 export function cartReducer(state: CartState, action: any) {
   switch (action.type) {
@@ -34,9 +38,25 @@ export function cartReducer(state: CartState, action: any) {
 
         if (hasProduct) {
           draft.products[productIndex] = action.payload.product
+
+          draft.productsPrice = draft.products.reduce((acc, coffee) => {
+            const subTotal = coffee.price * coffee.quantity
+
+            return acc + subTotal
+          }, 0)
         } else {
           draft.products.push(action.payload.product)
+
           draft.productsAmount = draft.products.length
+
+          draft.shippingPrice =
+            SHIPPING_PRICE_PER_PRODUCT * draft.products.length
+
+          draft.productsPrice = draft.products.reduce((acc, coffee) => {
+            const subTotal = coffee.price * coffee.quantity
+
+            return acc + subTotal
+          }, 0)
         }
       })
 
@@ -99,6 +119,12 @@ export function cartReducer(state: CartState, action: any) {
 
           return product
         })
+
+        draft.productsPrice = draft.products.reduce((acc, coffee) => {
+          const subTotal = coffee.price * coffee.quantity
+
+          return acc + subTotal
+        }, 0)
       })
 
     case CartActionTypes.DECREASE_PRODUCT_TO_CART:
@@ -130,6 +156,12 @@ export function cartReducer(state: CartState, action: any) {
 
           return product
         })
+
+        draft.productsPrice = draft.products.reduce((acc, coffee) => {
+          const subTotal = coffee.price * coffee.quantity
+
+          return acc + subTotal
+        }, 0)
       })
 
     default:

@@ -20,6 +20,8 @@ type CartContextData = {
   productsAmount: number
   products: Product[]
   draftCart: DraftProduct[]
+  shippingPrice: number
+  productsPrice: number
   addProductToCart: (data: Product) => void
   populateDraftCart: (data: DraftProduct[]) => void
   increaseToDraftCart: (id: number) => void
@@ -39,11 +41,14 @@ function CartContextProvider(props: CartContextProviderProps) {
 
   const [cartState, dispatch] = useReducer(cartReducer, {
     productsAmount: 0,
+    shippingPrice: 0,
+    productsPrice: 0,
     products: [],
     draftCart: [],
   })
 
-  const { products, draftCart, productsAmount } = cartState
+  const { products, draftCart, productsPrice, shippingPrice, productsAmount } =
+    cartState
 
   const addProductToCart = useCallback((product: Product) => {
     dispatch(addProductToCartAction(product))
@@ -75,6 +80,8 @@ function CartContextProvider(props: CartContextProviderProps) {
         products,
         productsAmount,
         draftCart,
+        productsPrice,
+        shippingPrice,
         addProductToCart,
         populateDraftCart,
         increaseToDraftCart,
