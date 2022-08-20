@@ -37,6 +37,37 @@ export function cartReducer(state: CartState, action: any) {
         draft.draftCart = action.payload.products
       })
 
+    case CartActionTypes.INCREASE_PRODUCT_TO_DRAFT_CART:
+      return produce(state, (draft) => {
+        draft.draftCart = draft.draftCart.map((product) => {
+          if (product.id === action.payload.product.id) {
+            return {
+              ...product,
+              quantity: product.quantity + 1,
+            }
+          }
+
+          return product
+        })
+      })
+
+    case CartActionTypes.DECREASE_PRODUCT_TO_DRAFT_CART:
+      return produce(state, (draft) => {
+        draft.draftCart = draft.draftCart.map((product) => {
+          if (
+            product.id === action.payload.product.id &&
+            product.quantity > 1
+          ) {
+            return {
+              ...product,
+              quantity: product.quantity - 1,
+            }
+          }
+
+          return product
+        })
+      })
+
     default:
       return state
   }
