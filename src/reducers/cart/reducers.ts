@@ -5,11 +5,13 @@ import { CartActionTypes } from './actions'
 export type Product = {
   id: number
   quantity: number
+  price: number
 }
 
 type CartState = {
   products: Product[]
   productsAmount: number
+  draftCart: Product[]
 }
 
 export function cartReducer(state: CartState, action: any) {
@@ -28,6 +30,11 @@ export function cartReducer(state: CartState, action: any) {
           draft.products.push(action.payload.product)
           draft.productsAmount = draft.products.length
         }
+      })
+
+    case CartActionTypes.POPULATE_DRAFT_CART:
+      return produce(state, (draft) => {
+        draft.draftCart = action.payload.products
       })
 
     default:

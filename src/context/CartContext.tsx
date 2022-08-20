@@ -6,13 +6,18 @@ import {
   useReducer,
 } from 'react'
 
-import { addProductToCartAction } from '../reducers/cart/actions'
+import {
+  addProductToCartAction,
+  populateDraftCartAction,
+} from '../reducers/cart/actions'
 import { cartReducer, Product } from '../reducers/cart/reducers'
 
 type CartContextData = {
   productsAmount: number
   products: Product[]
+  draftCart: Product[]
   addProductToCart: (data: Product) => void
+  populateDraftCart: (data: Product[]) => void
 }
 
 type CartContextProviderProps = {
@@ -27,12 +32,17 @@ function CartContextProvider(props: CartContextProviderProps) {
   const [cartState, dispatch] = useReducer(cartReducer, {
     productsAmount: 0,
     products: [],
+    draftCart: [],
   })
 
-  const { products, productsAmount } = cartState
+  const { products, draftCart, productsAmount } = cartState
 
   const addProductToCart = useCallback((product: Product) => {
     dispatch(addProductToCartAction(product))
+  }, [])
+
+  const populateDraftCart = useCallback((products: Product[]) => {
+    dispatch(populateDraftCartAction(products))
   }, [])
 
   return (
@@ -40,7 +50,9 @@ function CartContextProvider(props: CartContextProviderProps) {
       value={{
         products,
         productsAmount,
+        draftCart,
         addProductToCart,
+        populateDraftCart,
       }}
     >
       {children}
