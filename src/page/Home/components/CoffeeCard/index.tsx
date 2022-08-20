@@ -1,5 +1,8 @@
+import { ShoppingCart } from 'phosphor-react'
+
+import { Counter } from '../../../../components/Counter'
+import { useCart } from '../../../../context/CartContext'
 import { formatMonetary } from '../../../../utils'
-import { CoffeeCardAction } from '../CoffeeCardAction'
 
 import * as S from './styles'
 
@@ -17,7 +20,35 @@ type CoffeeCardProps = {
 export function CoffeeCard(props: CoffeeCardProps) {
   const { coffee } = props
 
+  const {
+    addProductToCart,
+    draftCart,
+    decreaseToDraftCart,
+    increaseToDraftCart,
+  } = useCart()
+
   const priceFormatted = formatMonetary(coffee.price).slice(3)
+
+  const coffeeQuantity =
+    draftCart.find((findCoffee) => findCoffee.id === coffee.id)?.quantity || 1
+
+  const handleAddProductToCart = () => {
+    addProductToCart({
+      id: coffee.id,
+      price: coffee.price,
+      quantity: coffeeQuantity,
+      image: coffee.image,
+      name: coffee.name,
+    })
+  }
+
+  const handleIncrease = () => {
+    increaseToDraftCart(coffee.id)
+  }
+
+  const handleDecrease = () => {
+    decreaseToDraftCart(coffee.id)
+  }
 
   return (
     <S.CoffeeCardContainer>
@@ -42,7 +73,17 @@ export function CoffeeCard(props: CoffeeCardProps) {
           R$ <span>{priceFormatted}</span>
         </S.CoffeeCardPrice>
 
-        <CoffeeCardAction coffeeId={coffee.id} />
+        <div>
+          <Counter
+            amount={coffeeQuantity}
+            onIncrease={handleIncrease}
+            onDecrease={handleDecrease}
+          />
+
+          <S.CoffeeCardButton type="button" onClick={handleAddProductToCart}>
+            <ShoppingCart weight="fill" size={22} />
+          </S.CoffeeCardButton>
+        </div>
       </S.CoffeeCardFooter>
     </S.CoffeeCardContainer>
   )
