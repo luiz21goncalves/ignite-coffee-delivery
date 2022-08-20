@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-vars */
 
-import { Product } from './reducers'
+import { Product, DraftProduct } from './reducers'
 
 export enum CartActionTypes {
   ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART',
   POPULATE_DRAFT_CART = 'POPULATE_DRAFT_CART',
   INCREASE_PRODUCT_TO_DRAFT_CART = 'INCREASE_PRODUCT_TO_DRAFT_CART',
-  DECREASE_PRODUCT_TO_DRAFT_CART = 'DECREASE_TO_DRAFT_CART',
+  DECREASE_PRODUCT_TO_DRAFT_CART = 'DECREASE_PRODUCT_TO_DRAFT_CART',
+  INCREASE_PRODUCT_TO_CART = 'INCREASE_PRODUCT_TO_CART',
+  DECREASE_PRODUCT_TO_CART = 'DECREASE_PRODUCT_TO_CART',
 }
 
 export function addProductToCartAction(product: Product) {
@@ -16,7 +18,7 @@ export function addProductToCartAction(product: Product) {
   }
 }
 
-export function populateDraftCartAction(products: Product[]) {
+export function populateDraftCartAction(products: DraftProduct[]) {
   return {
     type: CartActionTypes.POPULATE_DRAFT_CART,
     payload: { products },
@@ -33,6 +35,20 @@ export function increaseToDraftCartAction(id: number) {
 export function decreaseToDraftCartAction(id: number) {
   return {
     type: CartActionTypes.DECREASE_PRODUCT_TO_DRAFT_CART,
+    payload: { product: { id } },
+  }
+}
+
+export function increaseToCartAction(id: number) {
+  return {
+    type: CartActionTypes.INCREASE_PRODUCT_TO_CART,
+    payload: { product: { id } },
+  }
+}
+
+export function decreaseToCartAction(id: number) {
+  return {
+    type: CartActionTypes.DECREASE_PRODUCT_TO_CART,
     payload: { product: { id } },
   }
 }

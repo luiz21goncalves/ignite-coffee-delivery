@@ -2,16 +2,24 @@ import { produce } from 'immer'
 
 import { CartActionTypes } from './actions'
 
-export type Product = {
+export type DraftProduct = {
   id: number
   quantity: number
   price: number
 }
 
+export type Product = {
+  id: number
+  quantity: number
+  price: number
+  image: string
+  name: string
+}
+
 type CartState = {
   products: Product[]
   productsAmount: number
-  draftCart: Product[]
+  draftCart: DraftProduct[]
 }
 
 export function cartReducer(state: CartState, action: any) {
@@ -54,6 +62,62 @@ export function cartReducer(state: CartState, action: any) {
     case CartActionTypes.DECREASE_PRODUCT_TO_DRAFT_CART:
       return produce(state, (draft) => {
         draft.draftCart = draft.draftCart.map((product) => {
+          if (
+            product.id === action.payload.product.id &&
+            product.quantity > 1
+          ) {
+            return {
+              ...product,
+              quantity: product.quantity - 1,
+            }
+          }
+
+          return product
+        })
+      })
+
+    case CartActionTypes.INCREASE_PRODUCT_TO_CART:
+      return produce(state, (draft) => {
+        draft.draftCart = draft.draftCart.map((product) => {
+          if (product.id === action.payload.product.id) {
+            return {
+              ...product,
+              quantity: product.quantity + 1,
+            }
+          }
+
+          return product
+        })
+
+        draft.products = draft.products.map((product) => {
+          if (product.id === action.payload.product.id) {
+            return {
+              ...product,
+              quantity: product.quantity + 1,
+            }
+          }
+
+          return product
+        })
+      })
+
+    case CartActionTypes.DECREASE_PRODUCT_TO_CART:
+      return produce(state, (draft) => {
+        draft.draftCart = draft.draftCart.map((product) => {
+          if (
+            product.id === action.payload.product.id &&
+            product.quantity > 1
+          ) {
+            return {
+              ...product,
+              quantity: product.quantity - 1,
+            }
+          }
+
+          return product
+        })
+
+        draft.products = draft.products.map((product) => {
           if (
             product.id === action.payload.product.id &&
             product.quantity > 1

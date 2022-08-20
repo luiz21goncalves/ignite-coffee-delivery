@@ -8,20 +8,24 @@ import {
 
 import {
   addProductToCartAction,
+  decreaseToCartAction,
   decreaseToDraftCartAction,
+  increaseToCartAction,
   increaseToDraftCartAction,
   populateDraftCartAction,
 } from '../reducers/cart/actions'
-import { cartReducer, Product } from '../reducers/cart/reducers'
+import { cartReducer, DraftProduct, Product } from '../reducers/cart/reducers'
 
 type CartContextData = {
   productsAmount: number
   products: Product[]
-  draftCart: Product[]
+  draftCart: DraftProduct[]
   addProductToCart: (data: Product) => void
-  populateDraftCart: (data: Product[]) => void
+  populateDraftCart: (data: DraftProduct[]) => void
   increaseToDraftCart: (id: number) => void
   decreaseToDraftCart: (id: number) => void
+  increaseToCart: (id: number) => void
+  decreaseToCart: (id: number) => void
 }
 
 type CartContextProviderProps = {
@@ -45,7 +49,7 @@ function CartContextProvider(props: CartContextProviderProps) {
     dispatch(addProductToCartAction(product))
   }, [])
 
-  const populateDraftCart = useCallback((products: Product[]) => {
+  const populateDraftCart = useCallback((products: DraftProduct[]) => {
     dispatch(populateDraftCartAction(products))
   }, [])
 
@@ -55,6 +59,14 @@ function CartContextProvider(props: CartContextProviderProps) {
 
   const decreaseToDraftCart = useCallback((id: number) => {
     dispatch(decreaseToDraftCartAction(id))
+  }, [])
+
+  const increaseToCart = useCallback((id: number) => {
+    dispatch(increaseToCartAction(id))
+  }, [])
+
+  const decreaseToCart = useCallback((id: number) => {
+    dispatch(decreaseToCartAction(id))
   }, [])
 
   return (
@@ -67,6 +79,8 @@ function CartContextProvider(props: CartContextProviderProps) {
         populateDraftCart,
         increaseToDraftCart,
         decreaseToDraftCart,
+        increaseToCart,
+        decreaseToCart,
       }}
     >
       {children}
