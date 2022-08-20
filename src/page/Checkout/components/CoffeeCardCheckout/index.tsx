@@ -2,28 +2,36 @@ import { Trash } from 'phosphor-react'
 import { useTheme } from 'styled-components'
 
 import { Counter } from '../../../../components/Counter'
-import { COFFEE } from '../../../../constants/coffee'
+import { useCart } from '../../../../context/CartContext'
 import { formatMonetary } from '../../../../utils'
 
 import * as S from './styles'
 
 type CoffeeCardCheckoutProps = {
   coffeeId: number
-  quantity: number
 }
 
 export function CoffeeCardCheckout(props: CoffeeCardCheckoutProps) {
-  const { coffeeId, quantity } = props
+  const { coffeeId } = props
 
   const { 'purple-500': purple500 } = useTheme()
+  const { products, increaseToCart, decreaseToCart } = useCart()
 
-  const coffee = COFFEE.find((coffee) => coffee.id === coffeeId)
+  const coffee = products.find((coffee) => coffee.id === coffeeId)
 
   if (!coffee) {
     return <p>Café não encontrado</p>
   }
 
-  const priceFormatted = formatMonetary(coffee.price * quantity)
+  const priceFormatted = formatMonetary(coffee.price * coffee.quantity)
+
+  const handleIncrease = () => {
+    increaseToCart(coffee.id)
+  }
+
+  const handleDecrease = () => {
+    decreaseToCart(coffee.id)
+  }
 
   return (
     <S.CoffeeCardCheckoutContainer>
@@ -34,7 +42,11 @@ export function CoffeeCardCheckout(props: CoffeeCardCheckoutProps) {
           <p>{coffee.name}</p>
 
           <S.CoffeeCardCheckoutActionContainer>
-            <Counter amount={quantity} />
+            <Counter
+              amount={coffee.quantity}
+              onDecrease={handleDecrease}
+              onIncrease={handleIncrease}
+            />
 
             <S.CoffeeCardCheckoutRemoveButton>
               <div>
