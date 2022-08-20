@@ -1,16 +1,24 @@
+import { useCart } from '../../../../context/CartContext'
 import { CoffeeCardCheckout } from '../CoffeeCardCheckout'
 
 import * as S from './styles'
 
 export function OrderVisualization() {
+  const { products } = useCart()
+
   return (
     <div>
       <S.OrderVisualizationTitle>Cafés selecionados</S.OrderVisualizationTitle>
 
       <S.OrderVisualizationContainer>
         <S.OrderVisualizationList>
-          <CoffeeCardCheckout />
-          <CoffeeCardCheckout />
+          {products.map((coffee) => (
+            <CoffeeCardCheckout
+              key={coffee.id}
+              coffeeId={coffee.id}
+              quantity={coffee.quantity}
+            />
+          ))}
         </S.OrderVisualizationList>
 
         <S.OrderVisualizationFooter>
