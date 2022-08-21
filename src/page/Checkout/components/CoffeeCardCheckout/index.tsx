@@ -15,7 +15,7 @@ export function CoffeeCardCheckout(props: CoffeeCardCheckoutProps) {
   const { coffeeId } = props
 
   const { 'purple-500': purple500 } = useTheme()
-  const { products, increaseToCart, decreaseToCart } = useCart()
+  const { products, increaseToCart, decreaseToCart, removeToCart } = useCart()
 
   const coffee = products.find((coffee) => coffee.id === coffeeId)
 
@@ -33,6 +33,10 @@ export function CoffeeCardCheckout(props: CoffeeCardCheckoutProps) {
     decreaseToCart(coffee.id)
   }
 
+  const handleRemove = () => {
+    removeToCart(coffee.id)
+  }
+
   return (
     <S.CoffeeCardCheckoutContainer>
       <S.CoffeeCardCheckoutContent>
@@ -48,7 +52,7 @@ export function CoffeeCardCheckout(props: CoffeeCardCheckoutProps) {
               onIncrease={handleIncrease}
             />
 
-            <S.CoffeeCardCheckoutRemoveButton>
+            <S.CoffeeCardCheckoutRemoveButton onClick={handleRemove}>
               <div>
                 <Trash size={16} color={purple500} />
               </div>

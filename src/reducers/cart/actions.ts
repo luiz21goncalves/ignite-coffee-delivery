@@ -9,6 +9,7 @@ export enum CartActionTypes {
   DECREASE_PRODUCT_TO_DRAFT_CART = 'DECREASE_PRODUCT_TO_DRAFT_CART',
   INCREASE_PRODUCT_TO_CART = 'INCREASE_PRODUCT_TO_CART',
   DECREASE_PRODUCT_TO_CART = 'DECREASE_PRODUCT_TO_CART',
+  REMOVE_PRODUCT_TO_CART = 'REMOVE_PRODUCT_TO_CART',
 }
 
 export function addProductToCartAction(product: Product) {
@@ -49,6 +50,13 @@ export function increaseToCartAction(id: number) {
 export function decreaseToCartAction(id: number) {
   return {
     type: CartActionTypes.DECREASE_PRODUCT_TO_CART,
+    payload: { product: { id } },
+  }
+}
+
+export function removeToCartAction(id: number) {
+  return {
+    type: CartActionTypes.REMOVE_PRODUCT_TO_CART,
     payload: { product: { id } },
   }
 }

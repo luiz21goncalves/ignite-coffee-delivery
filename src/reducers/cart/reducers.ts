@@ -164,6 +164,38 @@ export function cartReducer(state: CartState, action: any) {
         }, 0)
       })
 
+    case CartActionTypes.REMOVE_PRODUCT_TO_CART:
+      return produce(state, (draft) => {
+        const productIndex = draft.products.findIndex(
+          (product) => product.id === action.payload.product.id,
+        )
+
+        if (productIndex < 0) {
+          return
+        }
+
+        draft.products.splice(productIndex, 1)
+
+        draft.productsPrice = draft.products.reduce((acc, coffee) => {
+          const subTotal = coffee.price * coffee.quantity
+
+          return acc + subTotal
+        }, 0)
+
+        draft.shippingPrice = SHIPPING_PRICE_PER_PRODUCT * draft.products.length
+        draft.productsAmount = draft.products.length
+
+        const draftCartIndex = draft.draftCart.findIndex(
+          (product) => product.id === action.payload.product.id,
+        )
+
+        if (draftCartIndex < 0) {
+          return
+        }
+
+        draft.draftCart[draftCartIndex].quantity = 1
+      })
+
     default:
       return state
   }

@@ -15,6 +15,7 @@ import {
   increaseToCartAction,
   increaseToDraftCartAction,
   populateDraftCartAction,
+  removeToCartAction,
 } from '../reducers/cart/actions'
 import { cartReducer, DraftProduct, Product } from '../reducers/cart/reducers'
 
@@ -30,6 +31,7 @@ type CartContextData = {
   decreaseToDraftCart: (id: number) => void
   increaseToCart: (id: number) => void
   decreaseToCart: (id: number) => void
+  removeToCart: (id: number) => void
 }
 
 type CartContextProviderProps = {
@@ -99,6 +101,10 @@ function CartContextProvider(props: CartContextProviderProps) {
     dispatch(decreaseToCartAction(id))
   }, [])
 
+  const removeToCart = useCallback((id: number) => {
+    dispatch(removeToCartAction(id))
+  }, [])
+
   return (
     <CartContext.Provider
       value={{
@@ -113,6 +119,7 @@ function CartContextProvider(props: CartContextProviderProps) {
         decreaseToDraftCart,
         increaseToCart,
         decreaseToCart,
+        removeToCart,
       }}
     >
       {children}
