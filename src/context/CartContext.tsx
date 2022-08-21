@@ -6,6 +6,7 @@ import {
   useReducer,
 } from 'react'
 
+import { COFFEE } from '../constants/coffee'
 import {
   addProductToCartAction,
   decreaseToCartAction,
@@ -44,7 +45,11 @@ function CartContextProvider(props: CartContextProviderProps) {
     shippingPrice: 0,
     productsPrice: 0,
     products: [],
-    draftCart: [],
+    draftCart: COFFEE.map((coffee) => ({
+      id: coffee.id,
+      price: coffee.price,
+      quantity: 1,
+    })),
   })
 
   const { products, draftCart, productsPrice, shippingPrice, productsAmount } =
