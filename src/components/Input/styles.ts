@@ -1,17 +1,8 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 import { SIZES } from '../../constants/sizes'
 
-type InputContainerProps = {
-  isFilled: boolean
-  isFocused: boolean
-}
-
-const highlightStyle = css`
-  border-color: ${({ theme }) => theme['yellow-900']};
-`
-
-export const InputContainer = styled.div<InputContainerProps>`
+export const InputContainer = styled.div`
   background-color: #eeeded;
   border: 1px solid ${({ theme }) => theme['gray-300']};
   border-radius: 4px;
@@ -24,9 +15,9 @@ export const InputContainer = styled.div<InputContainerProps>`
   align-items: center;
   justify-content: space-between;
 
-  ${({ isFocused }) => isFocused && highlightStyle}
-
-  ${({ isFilled }) => isFilled && highlightStyle}
+  &:focus-within {
+    border-color: ${({ theme }) => theme['yellow-900']};
+  }
 `
 
 export const Input = styled.input`
