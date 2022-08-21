@@ -62,7 +62,6 @@ function CartContextProvider(props: CartContextProviderProps) {
       const storedState = localStorage.getItem(CART_STATE_STORAGE_KEY)
 
       if (storedState) {
-        console.log({ storedState: JSON.parse(storedState) })
         return JSON.parse(storedState)
       }
     },
