@@ -1,4 +1,4 @@
-import { InputHTMLAttributes } from 'react'
+import { forwardRef, InputHTMLAttributes } from 'react'
 
 import * as S from './styles'
 
@@ -6,7 +6,7 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   isOptional?: boolean
 }
 
-export function Input(props: InputProps) {
+export const Input = forwardRef((props: InputProps, _) => {
   const { isOptional = false, ...attrs } = props
 
   return (
@@ -16,4 +16,6 @@ export function Input(props: InputProps) {
       {isOptional && <S.InputHelperText>Opcional</S.InputHelperText>}
     </S.InputContainer>
   )
-}
+})
+
+Input.displayName = 'Input'
