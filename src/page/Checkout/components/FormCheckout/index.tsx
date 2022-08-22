@@ -26,22 +26,22 @@ export function FormCheckout() {
 
           <S.FormCheckoutInputContainer>
             <S.FormCheckoutThreeColumns>
-              <Input placeholder="CEP" />
+              <Input placeholder="CEP" name="zipcode" />
               <div />
               <div />
             </S.FormCheckoutThreeColumns>
 
-            <Input placeholder="Rua" />
+            <Input placeholder="Rua" name="street" />
 
             <S.FormCheckoutTwoColumns>
-              <Input placeholder="Número" />
-              <Input placeholder="Complemento" isOptional />
+              <Input placeholder="Número" name="number" />
+              <Input placeholder="Complemento" name="complement" isOptional />
             </S.FormCheckoutTwoColumns>
 
             <S.FormCheckoutThreeColumns>
-              <Input placeholder="Bairro" />
-              <Input placeholder="Cidade" />
-              <Input placeholder="UF" />
+              <Input placeholder="Bairro" name="neighborhood" />
+              <Input placeholder="Cidade" name="city" />
+              <Input placeholder="UF" name="state" />
             </S.FormCheckoutThreeColumns>
           </S.FormCheckoutInputContainer>
         </S.FormCheckoutContent>
