@@ -10,6 +10,7 @@ export enum CartActionTypes {
   INCREASE_PRODUCT_TO_CART = 'INCREASE_PRODUCT_TO_CART',
   DECREASE_PRODUCT_TO_CART = 'DECREASE_PRODUCT_TO_CART',
   REMOVE_PRODUCT_TO_CART = 'REMOVE_PRODUCT_TO_CART',
+  CLEAN_CART = 'CLEAN_CART',
 }
 
 export function addProductToCartAction(product: Product) {
@@ -58,5 +59,11 @@ export function removeToCartAction(id: number) {
   return {
     type: CartActionTypes.REMOVE_PRODUCT_TO_CART,
     payload: { product: { id } },
+  }
+}
+
+export function cleanCartAction() {
+  return {
+    type: CartActionTypes.CLEAN_CART,
   }
 }

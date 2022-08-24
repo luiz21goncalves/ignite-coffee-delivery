@@ -10,6 +10,7 @@ import {
 import { COFFEE } from '../constants/coffee'
 import {
   addProductToCartAction,
+  cleanCartAction,
   decreaseToCartAction,
   decreaseToDraftCartAction,
   increaseToCartAction,
@@ -32,6 +33,7 @@ type CartContextData = {
   increaseToCart: (id: number) => void
   decreaseToCart: (id: number) => void
   removeToCart: (id: number) => void
+  cleanCart: () => void
 }
 
 type CartContextProviderProps = {
@@ -104,6 +106,10 @@ function CartContextProvider(props: CartContextProviderProps) {
     dispatch(removeToCartAction(id))
   }, [])
 
+  const cleanCart = useCallback(() => {
+    dispatch(cleanCartAction())
+  }, [])
+
   return (
     <CartContext.Provider
       value={{
@@ -119,6 +125,7 @@ function CartContextProvider(props: CartContextProviderProps) {
         increaseToCart,
         decreaseToCart,
         removeToCart,
+        cleanCart,
       }}
     >
       {children}

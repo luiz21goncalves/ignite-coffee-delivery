@@ -196,6 +196,18 @@ export function cartReducer(state: CartState, action: any) {
         draft.draftCart[draftCartIndex].quantity = 1
       })
 
+    case CartActionTypes.CLEAN_CART:
+      return produce(state, (draft) => {
+        draft.products = []
+        draft.productsAmount = 0
+        draft.productsPrice = 0
+        draft.shippingPrice = 0
+        draft.draftCart = draft.draftCart.map((product) => ({
+          ...product,
+          quantity: 1,
+        }))
+      })
+
     default:
       return state
   }
