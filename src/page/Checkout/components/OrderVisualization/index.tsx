@@ -1,4 +1,5 @@
 import { useFormContext } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 
 import { useCart } from '../../../../context/CartContext'
 import { formatMonetary } from '../../../../utils'
@@ -18,8 +19,10 @@ type FormValues = {
 }
 
 export function OrderVisualization() {
-  const { products, productsPrice, shippingPrice } = useCart()
-  const { handleSubmit } = useFormContext<FormValues>()
+  const { products, productsPrice, shippingPrice, cleanCart } = useCart()
+  const { handleSubmit, reset } = useFormContext<FormValues>()
+
+  const navigate = useNavigate()
 
   const totalOrderPrice = productsPrice + shippingPrice
 
@@ -43,7 +46,21 @@ export function OrderVisualization() {
       return alert('Preencha todos ao campos obrigatórios')
     }
 
-    console.log({ hasEmptyField, data })
+    const { city, number, neighborhood, street, state, payment } = data
+
+    reset()
+    cleanCart()
+
+    navigate('success', {
+      state: {
+        city,
+        number,
+        neighborhood,
+        street,
+        state,
+        payment,
+      },
+    })
   }
 
   return (

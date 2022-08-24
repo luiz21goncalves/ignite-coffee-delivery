@@ -1,12 +1,26 @@
 import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
+import { useLocation } from 'react-router-dom'
 import { useTheme } from 'styled-components'
 
 import deliveryIllustration from '../../assets/delivery.png'
 
 import * as S from './styles'
 
+type PageState = {
+  city: string
+  number: string
+  neighborhood: string
+  street: string
+  state: string
+  payment: string
+}
+
 export function CheckoutSuccess() {
   const { background } = useTheme()
+  const location = useLocation()
+
+  const { city, neighborhood, number, payment, state, street } =
+    location.state as PageState
 
   return (
     <S.CheckoutSuccessContainer>
@@ -24,9 +38,12 @@ export function CheckoutSuccess() {
               </S.CheckoutSuccessBackgroundIconMap>
 
               <p>
-                Entrega em Rua <strong>João Daniel Martinelli, 102</strong>
+                Entrega em Rua{' '}
+                <strong>
+                  {street}, {number}
+                </strong>
                 <br />
-                Farrapos - Porto Alegre, RS
+                {neighborhood} - {city}, {state}
               </p>
             </S.CheckoutSuccessItem>
 
@@ -50,7 +67,7 @@ export function CheckoutSuccess() {
               <p>
                 Pagamento na entrega
                 <br />
-                <strong>Cartão de Crédito</strong>
+                <strong>{payment}</strong>
               </p>
             </S.CheckoutSuccessItem>
           </div>
